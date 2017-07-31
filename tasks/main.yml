@@ -1,2 +1,12 @@
 ---
-# tasks file for roles/joe_editor/
+# tasks file for joe_editor
+  - name: "doesn't create a tilda file"
+    replace:
+      dest: /etc/joe/joerc
+      regexp: '^ +(-nobackups.*)$'
+      replace: '\1'
+  - name: "Force final newline when files are saved"
+    replace:
+      dest: /etc/joe/joerc
+      regexp: '^ +(-force.*)$'
+      replace: '\1'
