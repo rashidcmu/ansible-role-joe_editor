@@ -1,5 +1,16 @@
 ---
 # tasks file for joe_editor
+  - name: Add repository
+    yum_repository:
+      name: epel
+      description: EPEL YUM repo
+      baseurl: http://mirror.uic.edu/EPEL/$releasever/$basearch/
+      gpgcheck: no
+    when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+  - name: install joe
+    package:
+      name: joe
+
   - name: "doesn't create a tilda file"
     replace:
       dest: /etc/joe/joerc
