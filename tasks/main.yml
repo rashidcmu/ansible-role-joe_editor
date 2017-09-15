@@ -12,12 +12,14 @@
       name: joe
 
   - name: "doesn't create a tilda file"
-    replace:
+    lineinfile:
       dest: /etc/joe/joerc
-      regexp: '^ +(-nobackups.*)$'
-      replace: '\1'
+      regexp: '^ ?(-nobackups.*)$'
+      insertafter: 'Put each option you want set in the first column'
+      line: "-nobackups     If you don't want backup files to be created"
   - name: "Force final newline when files are saved"
-    replace:
+    lineinfile:
       dest: /etc/joe/joerc
-      regexp: '^ +(-force.*)$'
-      replace: '\1'
+      regexp: '^ ?(-force.*)$'
+      insertafter: 'Put each option you want set in the first column'
+      line: '-force         Force final newline when files are saved'
